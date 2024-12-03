@@ -83,20 +83,6 @@ python app.py
 4. Click "Transcribe" to begin the transcription process
 5. Once complete, view the transcription and download it in your preferred format
 
-## Project Structure
-
-├── app.py # Flask application
-├── static/
-│ ├── css/
-│ │ └── style.css # Application styles
-│ └── js/
-│ └── main.js # Frontend JavaScript
-├── templates/
-│ ├── base.html # Base template
-│ └── index.html # Main application template
-└── requirements.txt # Python dependencies
-
-
 ## API Reference
 
 The application uses the Deepgram API for transcription services. The following models are supported:
