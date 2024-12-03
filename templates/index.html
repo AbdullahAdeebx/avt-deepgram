@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Audio Transcription</h1>
+    <div class="upload-section">
+        <form id="upload-form">
+            <div class="form-group file-upload-group">
+                <div class="file-drop-area">
+                    <input type="file" id="file-input" accept="audio/*,video/*" required>
+                    <div class="file-message">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5-5 5 5M12 5v12"/>
+                        </svg>
+                        <span class="file-prompt">Drag and drop your file here or</span>
+                        <span class="file-button">Choose File</span>
+                        <span class="file-name">No file chosen</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Transcription Quality</label>
+                <div class="segmented-control">
+                    <input type="radio" name="model" id="model-base" value="base" checked>
+                    <label for="model-base">Fast</label>
+                    <input type="radio" name="model" id="model-enhanced" value="enhanced">
+                    <label for="model-enhanced">Enhanced</label>
+                    <input type="radio" name="model" id="model-nova" value="nova">
+                    <label for="model-nova">Premium</label>
+                </div>
+            </div>
+
+            <div class="form-group options-group">
+                <div class="toggle-option">
+                    <label for="diarization">Speaker Detection</label>
+                    <label class="switch">
+                        <input type="checkbox" id="diarization" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                
+                <div class="toggle-option">
+                    <label for="punctuation">Smart Punctuation</label>
+                    <label class="switch">
+                        <input type="checkbox" id="punctuation" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="primary-btn" disabled>
+                <span class="btn-text">Transcribe</span>
+                <div class="btn-loading" style="display: none;">
+                    <div class="spinner"></div>
+                </div>
+            </button>
+        </form>
+    </div>
+
+    <div id="progress-container" class="progress-container" style="display: none;">
+        <div class="progress-wrapper">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p class="progress-text">Processing your file...</p>
+        </div>
+    </div>
+
+    <div id="result" class="result-section" style="display: none;">
+        <div class="result-header">
+            <h2>Transcription Result</h2>
+            <div class="download-options">
+                <button onclick="downloadTranscript('txt')" class="secondary-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Text
+                </button>
+                <button onclick="downloadTranscript('srt')" class="secondary-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Subtitles
+                </button>
+                <button onclick="downloadTranscript('json')" class="secondary-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    JSON
+                </button>
+            </div>
+        </div>
+        <div class="transcript-preview">
+            <pre id="transcription-text"></pre>
+        </div>
+    </div>
+</div>
+{% endblock %} 
