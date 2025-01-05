@@ -41,7 +41,7 @@ A modern web application that provides high-quality audio and video transcriptio
 1. Clone the repository: 
 
 ```bash
-git clone https://github.com/iAbdullahAdeeb/avt.git
+git clone https://github.com/iAbdullahAdeeb/avt-deepgram.git
 cd avt
 ```
 
